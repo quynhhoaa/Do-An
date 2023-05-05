@@ -37,33 +37,35 @@ namespace NTQ_Solution.Controllers
                         userSession.UserID = user.ID;
                         userSession.Email = user.Email;
                         userSession.UserName = user.UserName;
+                        userSession.Role = user.Role;
+                        userSession.AccountName = user.AccountName;
                         Session.Add(CommonConstant.USER_SESSION, userSession);
                         var session = (UserLogin)Session[CommonConstant.USER_SESSION];
                         if(user.Role == 0) 
                         { 
-                            return RedirectToAction("Profile", "Profile"); 
+                            return RedirectToAction("Index", "Home"); 
                         }
                         else
                         {
-                            return Redirect("/Admin/Myprofile/Profile");
+                            return Redirect("/Admin/Product/Index");
                         }
                        
                     }
                     else if (result == 0)
                     {
-                        ModelState.AddModelError("", "Don't see Email");
+                        ModelState.AddModelError("", "Không tìm thấy Email");
                     }
                     else if (result == -1)
                     {
-                        ModelState.AddModelError("", "Account is InActive");
+                        ModelState.AddModelError("", "Tài khoản bị khóa");
                     }
                     else if (result == -2)
                     {
-                        ModelState.AddModelError("", "Password is incorect");
+                        ModelState.AddModelError("", "Password không chính xác");
                     }
                     else
                     {
-                        ModelState.AddModelError("", "Login fail");
+                        ModelState.AddModelError("", "Login thất bại");
                     }
                 }
                 return View("Index");

@@ -1,38 +1,50 @@
-﻿@model PagedList.IPagedList<DataLayer.EF.Product>
+﻿@model PagedList.IPagedList<DataLayer.ViewModel.ProductModel>
 @using PagedList.Mvc
 @{
     ViewBag.Title = "ProductOfSupplier";
     Layout = "~/Areas/Admin/Views/Shared/_Layouts.cshtml";
 }
-
 @section header{
     @if (ViewBag.supplierID == 1)
     {
-        <h2>Product of Teelab</h2>
+        <h2>Danh sách sản phẩm của Teelab</h2>
     }
     else if (ViewBag.supplierID == 2)
     {
-        <h2>Product of Bad Habits</h2>
+        <h2>Danh sách sản phẩm của Bad Habits</h2>
     }
     else
     {
-        <h2>Product of Degrey</h2>
+        <h2>Danh sách sản phẩm của Degrey</h2>
     }
 }
+@{var session = (NTQ_Solution.Common.UserLogin)Session[NTQ_Solution.Common.CommonConstant.USER_SESSION];}
 <div class="row">
     <div class="col-lg-12">
         <div class="panel panel-default">
             <div class="card shadow mb-4">
-                <div class="card-header py-3">
-                    <h6 class="m-0 font-weight-bold text-primary">List Product</h6>
-                </div>
                 <div class="card-body">
                     @using (Html.BeginForm("Index", "Supplier", FormMethod.Get))
                     {
-
+                        <span>Size</span>
+                        <select name="size">
+                            <option></option>
+                            <option>M</option>
+                            <option>L</option>
+                            <option>XL</option>
+                        </select>
+                        <span>Màu sắc</span>
+                        <select name="color">
+                            <option></option>
+                            <option>Đen</option>
+                            <option>Kem</option>
+                            <option>Trắng</option>
+                            <option>Nâu</option>
+                            <option>Xanh</option>
+                        </select>
                         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
                             <div class="input-group" style="margin-top:20px;margin-bottom:20px">
-                                <input type="text" name="supplierID" value="@ViewBag.supplierID" hidden/>
+                                <input type="text" name="supplierID" value="@ViewBag.supplierID" hidden />
                                 <input type="text" value="@ViewBag.SearchString" class="form-control bg-light border-0 small" placeholder="search" name="searchString"
                                        aria-label="Search" aria-describedby="basic-addon2" style="margin-right:5px">
                                 <div class="input-group-append">
@@ -49,16 +61,12 @@
                         <table class="table table-striped table-bordered table-hover" id="dataTable" width="100%" cellspacing="0">
                             <thead>
                                 <tr>
-                                    <th>ProductName</th>
-                                    <th>Image</th>
-                                    <th>Detail</th>
-                                    <th>Price</th>
-                                    <th>NumberViews</th>
-                                    <th>CreateAt</th>
-                                    <th>UpdateAt</th>
-                                    <th>DeleteAt</th>
-                                    <th>Trending</th>
-                                    <th>Status</th>
+                                    <th>Tên sản phẩm</th>
+                                    <th>Hình ảnh sản phẩm</th>
+                                    <th>Giá nhập</th>
+                                    <th>Giá xuất</th>
+                                    <th>Màu sắc</th>
+                                    <th>Size</th>
                                     <th></th>
                                 </tr>
                             </thead>
@@ -80,19 +88,16 @@
                                             <td>
                                                 <img style="border: 1px solid #ddd; border-radius: 4px; padding: 5px; width: 150px; " src="@item.Image" />
                                             </td>
-                                            <td>@item.Detail</td>
-                                            <td>@item.Price</td>
-                                            <td class="text-center">@item.NumberViews</td>
-                                            <td>@(item.CreateAt == null ? "" : item.CreateAt.Value.ToString("dd/MM/yyyy"))</td>
-                                            <td>@(item.UpdateAt == null ? "" : item.UpdateAt.Value.ToString("dd/MM/yyyy"))</td>
-                                            <td>@(item.DeleteAt == null ? "" : item.DeleteAt.Value.ToString("dd/MM/yyyy"))</td>
-                                            <td><a style="text-decoration:none" href="#" class="btn-active" data-id="@item.ID">@(item.Trending == true ? "Hot Trend" : "No Trend")</a></td>
-                                            <td><a style="text-decoration:none" href="#" class="btn-active" data-id="@item.ID">@(item.Status == 1 ? "On Sale" : "Out Sale")</a></td>
+                                            <td style="text-align:center">@item.ImportPrice</td>
+                                            <td style="text-align:center">@item.Price</td>
+                                            <td style="text-align:center">@item.Color</td>
+                                            <td style="text-align:center">@item.Size</td>
                                             <td>
+                                                @if (session.Role == 1)
+                                                {
+                                                    <a class="btn btn-success" style="text-decoration:none" href="/Admin/Supplier/ImportProduct/@item.ID"><i class="fa fa-edit">Nhập hàng</i></a>
 
-                                                <a class="btn btn-success" style="text-decoration:none" href="/Admin/Product/UpdateProduct/@item.ID"><i class="fa fa-edit">Edit</i></a>
-                                                <a class="btn btn-danger" style="text-decoration:none" href="/Admin/Product/Delete/@item.ID" onclick="return confirm('Do you want to delete?')"><i class="fa fa-trash">Delete</i></a>
-
+                                                }
                                             </td>
 
                                         </tr>
@@ -101,7 +106,7 @@
 
                             </tbody>
                         </table>
-                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString })+"&supplierID="+ViewBag.supplierID);
+                        @Html.PagedListPager(Model, page => Url.Action("Index", new { page, @searchString = ViewBag.SearchString }) + "&supplierID=" + ViewBag.supplierID);
                     </div>
 
                 </div>

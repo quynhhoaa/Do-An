@@ -9,15 +9,15 @@ namespace NTQ_Solution.Areas.Admin.Data
 {
     public class LoginModel
     {
-        [Required(ErrorMessage = "Enter Email,please")]
-        [EmailAddress(ErrorMessage = "Email is invalid")]
-        [RegularExpression(@"^.{10,30}$", ErrorMessage = "{0} from 10 to 30 character")]
+        [Required(ErrorMessage = "Hãy nhập Email")]
+        [EmailAddress(ErrorMessage = "Email không đúng định dạng")]
+        [RegularExpression(@"^.{10,30}$", ErrorMessage = "{0} từ 10 đến 30 kí tự")]
         [DisplayName("Email")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Enter Password,please")]
+        [Required(ErrorMessage = "Password không được để trống")]
        // [RegularExpression(@"^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{8,20})", ErrorMessage = "{0} chỉ từ 8 đến 20 ký tự, bao gồm ..")]
-        [DisplayName("Password")]
+        [DisplayName("Mật khẩu")]
         public string Password { get; set; }
 
         public bool RememberMe { get; set; }

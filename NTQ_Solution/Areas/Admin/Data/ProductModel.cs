@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,16 +11,15 @@ namespace NTQ_Solution.Areas.Admin.Data
     {
         public int ID { get; set; }
 
-        [RegularExpression(@"^.{2,50}$", ErrorMessage = "{0} from 2 to 50 characters")]
-        [Required(ErrorMessage = "Enter ProductName,please")]
+        [RegularExpression(@"^.{2,150}$", ErrorMessage = "{0} từ 2 đến 150 kí tự")]
+        [Required(ErrorMessage = "Tên sản phẩm không được để trống")]
         public string ProductName { get; set; }
         public int? CategoryID { get; set; }
 
-        [RegularExpression(@"^.{2,150}$", ErrorMessage = "{0} from 2 to 150 characters")]
-        [Required(ErrorMessage = "Enter Slug,please")]
+        [RegularExpression(@"^.{2,150}$", ErrorMessage = "{0} e đến 150 kí tự")]
+        [Required(ErrorMessage = "Slug không được để trống")]
         public string Slug { get; set; }
-
-        [StringLength(50)]
+        [Column(TypeName = "ntext")]
         public string Detail { get; set; }
 
         public bool Trending { get; set; }
@@ -27,10 +27,10 @@ namespace NTQ_Solution.Areas.Admin.Data
         public bool Status { get; set; }
 
         public int? NumberViews { get; set; }
-        [Required(ErrorMessage = "Enter Price,please")]
+        [Required(ErrorMessage = "Giá xuất không được để trống")]
         public double? Price { get; set; }
 
-        [StringLength(50)]
+        [StringLength(150)]
         [Required(ErrorMessage = "Select Image,please")]
         public string Image { get; set; }
 
@@ -39,6 +39,7 @@ namespace NTQ_Solution.Areas.Admin.Data
         public DateTime? UpdateAt { get; set; }
 
         public DateTime? DeleteAt { get; set; }
+        [Required(ErrorMessage = "Giá nhập không được để trống")]
         public double? ImportPrice { get; set; }
         public int? SupplierID { get; set; }
         [StringLength(50)]
@@ -50,5 +51,7 @@ namespace NTQ_Solution.Areas.Admin.Data
         public bool? Sale { get; set; }
 
         public int? Count { get; set; }
+        public int ImportCount { get; set; }
+        public int ExportCount { get; set; }
     }
 }

@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>NTQ-Solution</title>
+    <title>Xuu Shop</title>
 
     <!-- Custom fonts for this template-->
     <link href="~/assests/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">NTQ-Solution</div>
+                <div class="sidebar-brand-text mx-3">Xuu Shop</div>
             </a>
 
             <!-- Divider -->
@@ -46,7 +46,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/Admin/User/Index">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Home</span>
+                    <span>Trang chủ</span>
                 </a>
             </li>
             <!-- Nhà cung cấp -->
@@ -60,7 +60,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <a class="collapse-item" href="/Admin/Supplier?supplierID=1">Teelab</a>
                         <a class="collapse-item" href="/Admin/Supplier?supplierID=2">Bad Habits</a>
-                        <a class="collapse-item" href="/Admin/Supplier?supplierID=3">Degrey</a>
+                        <a class="collapse-item" href="/Admin/Supplier?supplierID=3">ClownZ</a>
                     </div>
                 </div>
             </li>
@@ -70,7 +70,7 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/Admin/ListUser/Index">
                     <i class="fas fa-fw fa-user"></i>
-                    <span>List User</span>
+                    <span>Danh sách tài khoản</span>
                 </a>
             </li>
             <!-- Nav Item - Utilities Collapse Menu -->
@@ -79,7 +79,16 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/Admin/ListReview/Index">
                     <i class="fas fa-fw fa-comment"></i>
-                    <span>List Review</span>
+                    <span>Bình luận</span>
+                </a>
+            </li>
+            <!-- Phiếu nhập-->
+            <hr class="sidebar-divider  my-0">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/Admin/ImportBill/Index">
+                    <i class="fas fa-fw fa-money-bill"></i>
+                    <span>Phiếu nhập hàng</span>
                 </a>
             </li>
             <!-- Divider -->
@@ -88,10 +97,34 @@
             <li class="nav-item active">
                 <a class="nav-link" href="/Admin/Product/Index">
                     <i class="fas fa-fw fa-folder"></i>
-                    <span>List Product</span>
+                    <span>Kho hàng</span>
                 </a>
             </li>
-
+            <hr class="sidebar-divider  my-0">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/Admin/Order/Index">
+                    <i class="fas fa-fw fa-cart-plus"></i>
+                    <span>Đơn hàng</span>
+                </a>
+            </li>
+            <hr class="sidebar-divider  my-0">
+            <!-- Vận chuyển -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/Admin/Shipping/Index">
+                    <i class="fas fa-fw fa-car"></i>
+                    <span>Vận chuyển</span>
+                </a>
+            </li>
+            <!-- Phiếu xuất-->
+            <hr class="sidebar-divider  my-0">
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item active">
+                <a class="nav-link" href="/Admin/ExportBill/Index">
+                    <i class="fas fa-fw fa-money-bill"></i>
+                    <span>Phiếu xuất hàng</span>
+                </a>
+            </li>
             <!-- Nav Item - Charts -->
             <hr class="sidebar-divider  my-0">
             <!-- Nav Item - Pages Collapse Menu -->
@@ -99,7 +132,7 @@
 
                 <a class="nav-link" href="/Admin/MyProfile/Profile">
                     <i class="fas fa-fw fa-chart-area"></i>
-                    <span>My Profile</span>
+                    <span>Thông tin tài khoản</span>
                 </a>
 
             </li>
@@ -184,12 +217,12 @@
                                      aria-labelledby="userDropdown">
                                     <a class="dropdown-item" href="/Admin/MyProfile/Profile">
                                         <i class="fas fa-user fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        My Profile
+                                        Tài khoản
                                     </a>
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="/Logout/Index">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
+                                        Đăng suất
                                     </a>
                                 </div>
                             }
@@ -224,7 +257,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>NTQSolution</span>
+                        <span>Xuu Shop</span>
                     </div>
                 </div>
             </footer>

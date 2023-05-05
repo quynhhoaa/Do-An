@@ -6,7 +6,7 @@
 }
 
 @section header{
-     Update Product
+     Sửa sản phẩm
 }
 
 @section jsFooter{
@@ -27,7 +27,7 @@
     @Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4>Product</h4>
+    <h4>Sản phẩm</h4>
     <hr />
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
     <div class="form-group">
@@ -46,6 +46,7 @@
         </div>
     </div>
 
+
     <div class="form-group">
         @Html.LabelFor(model => model.Detail, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
@@ -53,30 +54,56 @@
             @Html.ValidationMessageFor(model => model.Detail, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    <div class="form-group">
+        @Html.LabelFor(model => model.ImportPrice, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.ImportPrice, new { @class = "form-control form-control-user", Type = "number" })
+            @Html.ValidationMessageFor(model => model.ImportPrice, "", new { @class = "text-danger" })
+        </div>
+    </div>
     <div class="form-group">
         @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.Price, new { @class = "form-control form-control-user" })
+            @Html.TextBoxFor(model => model.Price, new { @class = "form-control form-control-user", Type = "number" })
             @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.NumberViews, htmlAttributes: new { @class = "control-label col-md-2" })
+        @Html.LabelFor(model => model.Color, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.TextBoxFor(model => model.NumberViews, new { @class = "form-control form-control-user" })
-            @Html.ValidationMessageFor(model => model.NumberViews, "", new { @class = "text-danger" })
+            @Html.TextBoxFor(model => model.Color, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Color, "", new { @class = "text-danger" })
         </div>
     </div>
-
     <div class="form-group">
-       
-            @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control form-control-user" }, id = "txtImage" })
-                <a id="btnSelectImage" href="#">Chọn ảnh </a>
-                @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
-            </div>
+        @Html.LabelFor(model => model.Size, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Size, new { @class = "form-control form-control-user" })
+            @Html.ValidationMessageFor(model => model.Size, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SupplierID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.SupplierID, new { @class = "form-control form-control-user", Type = "number" })
+            @Html.ValidationMessageFor(model => model.SupplierID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.CategoryID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.CategoryID, new { @class = "form-control form-control-user", Type = "number" })
+            @Html.ValidationMessageFor(model => model.CategoryID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Image, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.Image, new { htmlAttributes = new { @class = "form-control" }, id = "txtImage" })
+            <a id="btnSelectImage" href="#">Chọn ảnh </a>
+            @Html.ValidationMessageFor(model => model.Image, "", new { @class = "text-danger" })
+
+        </div>
     </div>
 
     <div class="form-group">
@@ -88,16 +115,9 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.LabelFor(model => model.Status, htmlAttributes: new { @class = "control-label col-md-2" })
-        <div class="col-md-10">
-            @Html.CheckBoxFor(model => model.Status)
-            @Html.ValidationMessageFor(model => model.Status, "", new { @class = "text-danger" })
-        </div>
-    </div>
-    <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <a class="btn btn-primary" href="/Admin/Product/Index">Back</a>
-            <input type="submit" value="Update" class="btn btn-primary" />
+            <a class="btn btn-primary" href="/Admin/Product/Index">Quay lại</a>
+            <input type="submit" value="Sửa" class="btn btn-primary" />
         </div>
     </div>
 </div>

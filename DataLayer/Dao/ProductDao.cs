@@ -96,17 +96,30 @@ namespace DataLayer.Dao
         /// <param name="page"></param>
         /// <param name="pageSize"></param>
         /// <returns></returns>
-        public IEnumerable<Product> ListAllPagingProduct(string trending, string searchString, int page, int pageSize)
+        public IEnumerable<Product> ListAllPagingProduct(string size, string color, string supplier, string trending, string searchString, int page, int pageSize)
         {
             try
             {
                 IQueryable<Product> model = db.Products;
-                if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(trending))
+                if (!string.IsNullOrEmpty(searchString) || !string.IsNullOrEmpty(trending) || !string.IsNullOrEmpty(color) || !string.IsNullOrEmpty(size) || !string.IsNullOrEmpty(supplier))
                 {
                     model = model.Where(x => x.ProductName.Contains(searchString));
                     if (trending != null)
                     {
                         model = model.Where(x => x.Trending == true);
+                    }
+                    if(!string.IsNullOrEmpty(color))
+                    {
+                        model = model.Where(x => x.Color == color);
+                    }
+                    if (!string.IsNullOrEmpty(size))
+                    {
+                        model = model.Where(x => x.Size == size);
+                    }
+                    if (!string.IsNullOrEmpty(supplier))
+                    {
+                        int supplierModel = int.Parse(supplier);
+                        model = model.Where(x => x.SupplierID == supplierModel);
                     }
                     return model.OrderByDescending(x => x.NumberViews).ToPagedList(page, pageSize);
                 }
@@ -139,9 +152,9 @@ namespace DataLayer.Dao
                     {
                         model = model.Where(x => x.Trending == true);
                     }
-                    return model.OrderByDescending(x => x.NumberViews).Where(x => x.Status == 1).ToPagedList(page, pageSize);
+                    return model.OrderByDescending(x => x.NumberViews).Where(x => x.Status == 1 && x.Color == null && x.Size == null).ToPagedList(page, pageSize);
                 }
-                return model.OrderByDescending(x => x.NumberViews).Where(x => x.Status == 1).ToPagedList(page, pageSize);
+                return model.OrderByDescending(x => x.NumberViews).Where(x => x.Status == 1 && x.Color == null && x.Size == null).ToPagedList(page, pageSize);
             }
             catch (Exception ex)
             {
@@ -254,7 +267,37 @@ namespace DataLayer.Dao
                 throw;
             }
         }
-
+        public List<Category> ListCategory()
+        {
+            return db.Categories.OrderBy(x=>x.ID).ToList();
+        }
+        public IEnumerable<Product> Category(int categoryID, int page, int pageSize)
+        {
+            try
+            {
+                IQueryable<Product> model = db.Products;
+                return model.OrderByDescending(x => x.NumberViews).Where(x => x.CategoryID == categoryID && x.Color == null && x.Size == null).ToPagedList(page, pageSize);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
+        public List<Product> ListColor(string productName) 
+        {
+            var model = db.Products.Where(x=>x.ProductName == productName).ToList();
+            return model;
+        }
+        public List<Product> ListSize(string productName)
+        {
+            var model = db.Products.Where(x => x.ProductName == productName).ToList();
+            return model;
+        }
+        public int CartCount()
+        {
+            return db.Orders.Where(x => x.Status == 1).Count();
+        }
 
     }
 }
