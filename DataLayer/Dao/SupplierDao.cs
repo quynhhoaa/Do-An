@@ -52,7 +52,7 @@ namespace DataLayer.Dao
                 {
                     model = model.Where(x => x.Color == color);
                 }
-                return model.OrderByDescending(x => x.NumberViews).ToPagedList(page, pageSize);
+                return model.Where(x=>x.Color != null && x.Size != null).OrderByDescending(x => x.NumberViews).ToPagedList(page, pageSize);
             }
             catch (Exception ex)
             {
@@ -78,6 +78,10 @@ namespace DataLayer.Dao
             };
             db.Imports.Add(import);
             db.SaveChanges();
+        }
+        public List<Supplier> ListSupplier()
+        {
+            return db.Suppliers.OrderBy(x => x.ID).ToList();
         }
     }
 }

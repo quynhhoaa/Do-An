@@ -10,9 +10,7 @@
     {
 
         <form class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-            <div class="input-group">
-                <span style="margin-right:20px">Trending:</span><input type="checkbox" name="trending" />
-            </div>
+            
             <div class="input-group" style="margin-top:20px;margin-bottom:20px">
 
                 <input type="text" value="@ViewBag.SearchString" class="form-control bg-light border-0 small" placeholder="search" name="searchString"
@@ -33,9 +31,9 @@
             /* if (item.Status == 1)
              {*/
             var url = "/chi-tiet/" + item.Slug + "-" + item.ID;
-            <div class="grid_1_of_4 images_1_of_4">
+            <div class="grid_1_of_4 images_1_of_4" style="height: 380px;max-height: 400px;">
                 <a href="@url"><img src="@item.Image" alt="@item" style="width:193px;height:193px" /></a>
-                <h2>@item.ProductName </h2>
+                <h2 style="height:50px;padding-top:10px">@item.ProductName </h2>
                 <i class="fa fa-eye " id="eye">@item.NumberViews</i>
                 <div class="price-details">
                     <div class="price-number">
