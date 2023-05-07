@@ -9,7 +9,7 @@ using System.Web.Mvc;
 
 namespace NTQ_Solution.Areas.Admin.Controllers
 {
-    public class SupplierController : Controller
+    public class SupplierController : BaseController
     {
         SupplierDao supplierDao;
         ProductDao productDao;
@@ -23,6 +23,8 @@ namespace NTQ_Solution.Areas.Admin.Controllers
         {
             try
             {
+                ViewBag.listColor = productDao.listcolor();
+                ViewBag.listSize = productDao.listsize();
                 ViewBag.SearchString = searchString;
                 ViewBag.Size = size;
                 ViewBag.Color = color;
@@ -41,6 +43,7 @@ namespace NTQ_Solution.Areas.Admin.Controllers
         {
             try
             {
+                
                 var temp = productDao.GetProductById(id);
                 bool status, checkTrending;
                 if (temp.Status == 1) status = true;

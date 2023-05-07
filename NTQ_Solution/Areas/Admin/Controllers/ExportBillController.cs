@@ -7,18 +7,22 @@ using System.Web.Mvc;
 
 namespace NTQ_Solution.Areas.Admin.Controllers
 {
-    public class ExportBillController : Controller
+    public class ExportBillController : BaseController
     {
         ExportBillDao exportBillDao;
+        ProductDao productDao;
         public ExportBillController()
         {
             exportBillDao = new ExportBillDao();
+            productDao = new ProductDao();
         }
         // GET: Admin/ExportBill
         public ActionResult Index(string searchString, int page = 1, int pageSize = 5)
         {
             try
             {
+                ViewBag.listColor = productDao.listcolor();
+                ViewBag.listSize = productDao.listsize();
                 ViewBag.SearchString = searchString;
                 var model = exportBillDao.ListAllExportBill(searchString, page, pageSize);
                 return View(model);

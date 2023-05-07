@@ -20,6 +20,8 @@ namespace DataLayer.Dao
         {
             try
             {
+                int Size = int.Parse(size);
+                int Color = int.Parse(color);
                 var model = (from a in db.Products
                              where a.SupplierID == supplierID
                              select new ProductModel
@@ -46,11 +48,11 @@ namespace DataLayer.Dao
                 }
                 if (!string.IsNullOrEmpty(size))
                 {
-                    model = model.Where(x => x.Size == size);
+                    model = model.Where(x => x.Size == Size);
                 }
                 if (!string.IsNullOrEmpty(color))
                 {
-                    model = model.Where(x => x.Color == color);
+                    model = model.Where(x => x.Color == Color);
                 }
                 return model.Where(x=>x.Color != null && x.Size != null).OrderByDescending(x => x.NumberViews).ToPagedList(page, pageSize);
             }
@@ -65,6 +67,7 @@ namespace DataLayer.Dao
             var product = db.Products.Find(productModel.ID);
             if(product != null) 
             {
+                product.ImportPrice = productModel.ImportPrice;
                 product.Count += productModel.ImportCount;
             }
             var import = new Import
