@@ -25,6 +25,11 @@ namespace NTQ_Solution.Areas.Admin.Controllers
                 ViewBag.listSize = productDao.listsize();
                 ViewBag.SearchString = searchString;
                 var model = importBillDao.ListAllImportBill(searchString, page, pageSize);
+                double? total = 0;
+                foreach(var item in model){
+                    total += item.Price;
+                }
+                ViewBag.total = total;
                 return View(model);
             }
             catch (Exception ex)

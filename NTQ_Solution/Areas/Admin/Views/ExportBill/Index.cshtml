@@ -38,8 +38,10 @@
                                     <th>Size</th>
                                     <th>Màu sắc</th>
                                     <th>Số lượng xuất</th>
-                                    <th>Tổng tiền xuất</th>
+
                                     <th>Ngày xuất hàng</th>
+                                    <th>Tiền xuất hàng</th>
+                                    <th>Tiền lãi</th>
                                     <th>Nhân viên xác nhận</th>
                                 </tr>
                             </thead>
@@ -47,7 +49,7 @@
                                 @if (Model.Count == 0)
                                 {
                                     <tr>
-                                        <td colspan="10" class="text-center">No data</td>
+                                        <td colspan="10" class="text-center">Không có dữ liệu</td>
                                     </tr>
                                 }
                                 @if (Model.Count != 0)
@@ -61,8 +63,8 @@
                                             </td>
                                             @foreach (var size in listSize)
                                             {
-                                                
-                                                if(item.Size == size.ID)
+
+                                                if (item.Size == size.ID)
                                                 {
                                                     <td>
                                                         @size.SizeName
@@ -72,8 +74,8 @@
 
                                             @foreach (var color in listColor)
                                             {
-                                                
-                                                if(item.Color == color.ID)
+
+                                                if (item.Color == color.ID)
                                                 {
                                                     <td>
                                                         @color.ColorName
@@ -81,11 +83,19 @@
                                                 }
                                             }
                                             <td style="text-align:center">@item.Count</td>
-                                            <td style="text-align:center">@item.Price</td>
                                             <td style="text-align:center">@(item.CreateAt == null ? "" : item.CreateAt.Value.ToString("dd/MM/yyyy"))</td>
+
+                                            <td style="text-align:center">@item.Price</td>
+                                            <td style="text-align:center">@(item.Price -item.Count*item.ImportPrice-20000)</td>
                                             <td>@item.UserName</td>
                                         </tr>
                                     }
+                                    <tr>
+                                        <td colspan="6" class="text-center"><h2 style="font-weight:bold">Tổng tiền </h2></td>
+                                        <td>@ViewBag.total</td>
+                                        <td>@ViewBag.total2</td>
+                                        <td></td>
+                                    </tr>
                                 }
 
                             </tbody>

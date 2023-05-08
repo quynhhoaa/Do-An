@@ -26,13 +26,14 @@
                                     <th>Số lượng</th>
                                     <th>Hình thức vận chuyển</th>
                                     <th>Trạng thái</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @if (Model.Count == 0)
                                 {
                                     <tr>
-                                        <td colspan="10" class="text-center">No data</td>
+                                        <td colspan="10" class="text-center">Không có dữ liệu</td>
                                     </tr>
                                 }
                                 @if (Model.Count != 0)
@@ -91,13 +92,11 @@
                                                     {
                                                         <input type="submit" class="btn btn-success" style="text-decoration:none" @*href="/Order/Order?OrderId=@item.ID"*@ value="Đặt hàng" />
                                                         @*<i class="fa fa-edit">Đặt hàng</i></input>*@
-                                                        <a class="btn btn-danger" style="text-decoration:none" href="/Order/Delete/@item.ID" onclick="return confirm('Ban co chac muon xoa?')"><i class="fa fa-trash">Xóa</i></a>
 
                                                     }
                                                     @if (item.Status == 2)
                                                     {
                                                         <a class="btn btn-success" style="text-decoration:none">Chờ xác nhận</a>
-                                                        <a class="btn btn-danger" style="text-decoration:none" href="/Order/Delete/@item.ID" onclick="return confirm('Ban co chac muon xoa?')"><i class="fa fa-trash">Xóa</i></a>
 
                                                     }
                                                     @if (item.Status == 3)
@@ -109,6 +108,18 @@
                                                         <a class="btn btn-success" style="text-decoration:none">Đã nhận hàng</a>
                                                     }
 
+                                                </td>
+                                                <td>
+                                                    @if (item.Status == 2)
+                                                    {
+                                                        <a class="btn btn-danger" style="text-decoration:none" href="/Order/Delete/@item.ID" onclick="return confirm('Ban co chac muon xoa?')"><i class="fa fa-trash">Hủy</i></a>
+
+                                                    }
+                                                    @if (item.Status == 1)
+                                                    {
+
+                                                        <a class="btn btn-danger" style="text-decoration:none" href="/Order/Delete/@item.ID" onclick="return confirm('Ban co chac muon xoa?')"><i class="fa fa-trash">Xóa</i></a>
+                                                    }
                                                 </td>
                                             </tr>
                                             </form>

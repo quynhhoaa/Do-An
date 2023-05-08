@@ -24,5 +24,6 @@ namespace DataLayer.ViewModel
         public string Image { get; set; }
         public int? Color {get;set;}
         public int? Size{get;set;}
+        public double? ImportPrice { get; set; }
     }
 }

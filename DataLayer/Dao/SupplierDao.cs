@@ -20,8 +20,8 @@ namespace DataLayer.Dao
         {
             try
             {
-                int Size = int.Parse(size);
-                int Color = int.Parse(color);
+                
+                
                 var model = (from a in db.Products
                              where a.SupplierID == supplierID
                              select new ProductModel
@@ -48,13 +48,15 @@ namespace DataLayer.Dao
                 }
                 if (!string.IsNullOrEmpty(size))
                 {
+                    int Size = int.Parse(size);
                     model = model.Where(x => x.Size == Size);
                 }
                 if (!string.IsNullOrEmpty(color))
                 {
+                    int Color = int.Parse(color);
                     model = model.Where(x => x.Color == Color);
                 }
-                return model.Where(x=>x.Color != null && x.Size != null).OrderByDescending(x => x.NumberViews).ToPagedList(page, pageSize);
+                return model.Where(x=>x.Color != 0 && x.Size != 0).OrderByDescending(x => x.NumberViews).ToPagedList(page, pageSize);
             }
             catch (Exception ex)
             {
