@@ -17,17 +17,19 @@ namespace NTQ_Solution.Areas.Admin.Controllers
         }
         // GET: Admin/Product
         
-        public ActionResult Index(string size, string color, string supplier, string searchString, int page = 1, int pageSize = 5)
+        public ActionResult Index(string size, string color, string categoryID, string supplier, string searchString, int page = 1, int pageSize = 5)
         {
             try
             {
                 ViewBag.listColor = productDao.listcolor();
                 ViewBag.listSize = productDao.listsize();
+                ViewBag.listSupplier = productDao.listSupplier();
                 ViewBag.SearchString = searchString;
                 ViewBag.Size = size;
                 ViewBag.Color = color;
                 ViewBag.Supplier = supplier;
-                var model = productDao.ListAllPagingProduct(size, color, supplier, searchString, page, pageSize);
+                ViewBag.Category = categoryID;
+                var model = productDao.ListAllPagingProduct(size, color, categoryID, supplier, searchString, page, pageSize);
                 return View(model);
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); throw; }
@@ -215,6 +217,12 @@ namespace NTQ_Solution.Areas.Admin.Controllers
                 return RedirectToAction("Index");
             }
             catch (Exception ex) { Console.WriteLine(ex.Message); throw; }
+        }
+        [ChildActionOnly]
+        public ActionResult ProductMenu()
+        {
+            var model = productDao.ListCategory();
+            return View(model);
         }
     }
 }

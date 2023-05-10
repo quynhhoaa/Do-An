@@ -183,7 +183,7 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
                     <li>
                         @Html.ActionLink("Sửa thông tin tài khoản", "Profile", "Profile")
 
-                       
+                        
                     </li>
 
 
@@ -449,14 +449,14 @@ Purchase Premium Metronic Admin Theme: http://themeforest.net/item/metronic-resp
             Layout.initTwitter();
         });
     </script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $().UItoTop({ easingType: 'easeOutQuart' });
+    <script>
+     $(document).ready(function () {
             var message = '@TempData["success"]';
             if (message) {
                 alert(message);
             }
-        });</script>
+        });
+    </script>
     <a href="#" id="toTop"><span id="toTopHover"> </span></a>
     @RenderSection("jsFooter", required: false)
     <!-- END PAGE LEVEL JAVASCRIPTS -->

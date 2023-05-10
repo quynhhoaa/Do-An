@@ -9,15 +9,11 @@
 @section header{
     @if (ViewBag.supplierID == 1)
     {
-        <h2>Danh sách sản phẩm của Teelab</h2>
-    }
-    else if (ViewBag.supplierID == 2)
-    {
-        <h2>Danh sách sản phẩm của Bad Habits</h2>
+        <h2>Danh sách sản phẩm của Gucci</h2>
     }
     else
     {
-        <h2>Danh sách sản phẩm của Degrey</h2>
+        <h2>Danh sách sản phẩm của Rolex</h2>
     }
 }
 @{var session = (NTQ_Solution.Common.UserLogin)Session[NTQ_Solution.Common.CommonConstant.USER_SESSION];}
@@ -30,7 +26,6 @@
                     {
                         <span>Size</span>
                         <select name="size">
-                            <option></option>
                             @foreach (var item in listSize)
                             {
                                 <option value="@item.ID">@item.SizeName</option>
@@ -38,7 +33,6 @@
                         </select>
                         <span>Màu sắc</span>
                         <select name="color">
-                            <option></option>
                             @foreach (var item in listColor)
                             {
                                 <option value="@item.ID">@item.ColorName</option>
@@ -92,27 +86,30 @@
                                             </td>
                                             <td style="text-align:center">@item.ImportPrice</td>
                                             <td style="text-align:center">@item.Price</td>
-                                            @foreach (var size in listSize)
-                                            {
-                                                
-                                                if(item.Size == size.ID)
+                                            <td>
+                                                @foreach (var size in listSize)
                                                 {
-                                                    <td>
-                                                        @size.SizeName
-                                                    </td>
-                                                }
-                                            }
 
-                                            @foreach (var color in listColor)
-                                            {
-                                                
-                                                if(item.Color == color.ID)
-                                                {
-                                                    <td>
-                                                        @color.ColorName
-                                                    </td>
+                                                    if (item.Size == size.ID)
+                                                    {
+
+                                                        @size.SizeName
+
+                                                    }
                                                 }
-                                            }
+                                            </td>
+                                            <td>
+                                                @foreach (var color in listColor)
+                                                {
+
+                                                    if (item.Color == color.ID)
+                                                    {
+
+                                                        @color.ColorName
+
+                                                    }
+                                                }
+                                            </td>
                                             <td>
                                                 @if (session.Role == 1)
                                                 {

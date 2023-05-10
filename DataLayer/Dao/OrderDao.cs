@@ -79,8 +79,10 @@ namespace DataLayer.Dao
         {
             try
             {
-                int Size = int.Parse(size);
-                int Color = int.Parse(color);
+                int Size = 0;
+                if (size != null) int.Parse(size);
+                int Color = 0;
+                if (color != null) int.Parse(color);
                 var product = db.Products.Where(x => x.ProductName == productName && x.Size == Size && x.Color == Color).FirstOrDefault();
                 return product;
             }
@@ -99,8 +101,10 @@ namespace DataLayer.Dao
 
         public IEnumerable<OrderModel> getOrderModel(int OrderId,int count,string color, string size)
         {
-            int Color = int.Parse(color);
-            int Size = int.Parse(size);
+            int Size = 0;
+            if (size != null) int.Parse(size);
+            int Color = 0;
+            if (color != null) int.Parse(color);
             var model = (from a in db.Orders
                          join b in db.Users
                          on a.UserID equals b.ID
@@ -130,8 +134,10 @@ namespace DataLayer.Dao
         }
         public OrderModel convertOrderModel(Order Order, string color, string size)
         {
-            int Color = int.Parse(color);
-            int Size = int.Parse(size);
+            int Size = 0;
+            if (size != null) int.Parse(size);
+            int Color = 0;
+            if (color != null) int.Parse(color);
             var model = (from a in db.Orders
                          join b in db.Users
                          on a.UserID equals b.ID
@@ -213,6 +219,20 @@ namespace DataLayer.Dao
 				throw;
 			}
 		}
+        public void DeleteOrder(int id)
+        {
+            try
+            {
+                var model = db.Orders.Find(id);
+                model.Status = 5;
+                db.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+                throw;
+            }
+        }
         public void PaymentSuccess(OrderModel orderModel,string shipMode,int shipMoney)
         {
             var order = db.Orders.Find(orderModel.ID);
